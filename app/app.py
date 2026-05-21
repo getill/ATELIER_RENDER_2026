@@ -1,3 +1,4 @@
+# pyrefly: ignore [missing-import]
 from flask import Flask
 import os
 
@@ -10,6 +11,18 @@ def home():
 @app.route("/health")
 def health():
     return {"status": "Tout est ok ou pas"}
+
+@app.route("/info")
+def info():
+    return {
+        "app": "Flask Render",
+        "student": "Theo Lemray",
+        "version": "v1"
+    }
+    
+@app.route("/env")
+def env():
+    return {"env": os.getenv("ENV")}
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
